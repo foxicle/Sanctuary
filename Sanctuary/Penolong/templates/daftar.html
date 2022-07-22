@@ -1,0 +1,46 @@
+{% extends 'base.html'%}
+    
+{% block content %}
+    <center>
+        <h1>SANCTUARY</h1>
+    </center>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>
+                Kehilangan Hewan?
+                <a href="{% url 'tambah_hewan' %}">isi form</a>
+            </h3>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>FOTO</th>
+                        <th>NAMA</th>
+                        <th>DESKRIPSI</th>
+                        <th>PEMILIK</th>
+                        <th>DATE</th>
+                        <th>NOMOR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for Hewan in hewans %}
+                    <tr>
+                        <td>
+                            {% if Hewan.gambar %}
+                                <img src="{{ Hewan.gambar.url }}" width="90px">
+                            {% endif %}
+                        </td>
+                        <td><a href="{% url 'ubah_hewan' Hewan.id %}">{{ Hewan.Nama }}</a></td>
+                        <td>{{ Hewan.Deskripsi }}</td>
+                        <td>{{ Hewan.Pemilik }}</td>
+                        <td>{{ Hewan.Date }}</td>
+                        <td>{{ Hewan.Nomor }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
